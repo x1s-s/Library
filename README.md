@@ -1,5 +1,5 @@
 # Alexey Shkurko
-CV : [link](https://github.com/x1s-s/Library.git)
+CV : [link](https://www.notion.so/x1ss/Resume-57cbe70363b84de4a0cf947d346686bb)
 # Library Web API
 > Web API project for scheduling meetings
 
