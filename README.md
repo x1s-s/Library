@@ -1,3 +1,5 @@
+# Alexey Shkurko
+CV : [link](https://github.com/x1s-s/Library.git)
 # Library Web API
 > Web API project for scheduling meetings
 
