@@ -4,21 +4,23 @@
 ## Methods
 ### Polygraphy
 - [get all polygraphies](#GetAllPolygraphies)
-- [get polygraphy by id](#GetPolygraphtById)
+- [get polygraphy by id](#GetPolygraphyById)
 - [get polygraphies with filter](#GetPolygraphiesWithFilter)
-- [update polygraphy by id](#UpdatePolygraphy)
-- [add polygraphy](#AddPolygraphy)
+- [update polygraphy by id(cascade)](#UpdatePolygraphy)
+- [add polygraphy (cascade)](#AddPolygraphy)
 - [delete polygraphy by id](#DeletePolygraphy)
 ### Author
-- [get all authors]
-- [get author by id]
-- [update author by id]
-- [delete author by id (cascade)]
+- [get all authors](#GetAllAuthors)
+- [get author by id](#GetAuthorById)
+- [update author by id](#UpdateAuthor)
+- [add author](#AddAuthor)
+- [delete author by id ](#DeleteAuthor)
 ### Publishing house
-- [get all publishing house]
-- [get publishing house by id]
-- [update publishing house by id]
-- [delete publishing house by id (cascade)]
+- [get all publishing house](#GetAllPublishingHouses)
+- [get publishing house by id](#GetPublishingHouseById)
+- [update publishing house by id](#UpdatePublishingHouse)
+- [add publishing house](#AddPublishingHouse)
+- [delete publishing house by id](#DeletePublishingHouse)
 
 ## Date format 
 Date format : yyyy-MM-dd
@@ -127,7 +129,7 @@ Example response body:
 	}
 ]
 ```
-#### 3. <a name="GetPolygraphiesWithFilter">Get polygraphies with filter</a>
+#### 4. <a name="UpdatePolygraphy">Update polygraphy</a>
 Request URL: 
 ```
 [PUT] localhost:8080/polygraphy/update/{id}
@@ -160,7 +162,7 @@ Example request body:
 	"dateOfPublication":"1854-07-08"
 }
 ```
-#### 4. <a name="AddPolygraphyr">Add polygraphy</a>
+#### 5. <a name="AddPolygraphy">Add polygraphy</a>
 Request URL: 
 ```
 [POST] localhost:8080/polygraphy/add/
@@ -205,7 +207,11 @@ Example request body:
 	}
 }
 ```
-#### 5. <a name="DeletePolygraphy">Delete polygraphy by id</a>
+Response body:
+```
+36
+```
+#### 6. <a name="DeletePolygraphy">Delete polygraphy by id</a>
 Request URL: 
 ```
 [DELETE] localhost:8080/polygraphy/delete/{id}
@@ -214,5 +220,183 @@ Example request URL:
 ```
 [DELETE] localhost:8080/polygraphy/delete/36
 ```
+### Authors:
+#### 1. <a name="GetAllAuthors">Get all authors</a>
+Request URL: 
+```
+[GET] localhost:8080/authors/get/all
+```
+Response body:
+```
+[
+	{
+		"fullname": "Лев Николаевич Толстой",
+		"country": "Российская империя"
+	}
+]
+```
+#### 2. <a name="GetAuthorById">Get author by id</a>
+Request URL: 
+```
+[GET] localhost:8080/authors/get/{id}
+```
+Example request URL: 
+```
+[GET] localhost:8080/authors/get/33
+```
+Example response body:
+```
 
+{
+	"fullname": "Лев Николаевич Толстой",
+	"country": "Российская империя"
+}
+```
+#### 3. <a name="UpdateAuthor">Update author by id</a>
+Request URL: 
+```
+[PUT] localhost:8080/authors/update/{id}
+```
+Request body:
+```
+{
+	["fullname": ?,]
+	["country": ?]
+}
+```
+Example request URL: 
+```
+[PUT] localhost:8080/authors/get/33
+```
+Example request body:
+```
+{
+	"country": "Российская империя"
+}
+```
+#### 4. <a name="AddAuthor">Add author</a>
+Request URL: 
+```
+[POST] localhost:8080/authors/add
+```
+Request body:
+```
+{
+	"fullname": ?,
+	"country": ?
+}
+```
+Example request URL: 
+```
+[POST] localhost:8080/authors/add
+```
+Example request body:
+```
+{
+	"fullname":"Александр Сергеевич Пушкин",
+	"country":"Российская империя"
+}
+```
+Response body:
+```
+37
+```
+#### 5. <a name="DeleteAuthor">Delete author</a>
+Request URL: 
+```
+[DELETE] localhost:8080/authors/delete/{id}
+```
+Example request URL: 
+```
+[DELETE] localhost:8080/authors/delete/37
+```
+### Publishing House:
+#### 1. <a name="GetAllPublishingHouses">Get all publishing houses</a>
+Request URL: 
+```
+[GET] localhost:8080/publishinghouse/get/all
+```
+Response body:
+```
+[
+	{
+		"name": "Аверсэв",
+		"address": "ул. Олешева 1, Минск"
+	}
+]
+```
+#### 2. <a name="GetPublishingHouseById">Get publishing house by id</a>
+Request URL: 
+```
+[GET] localhost:8080/publishinghouse/get/{id}
+```
+Example request URL: 
+```
+[GET] localhost:8080/publishinghouse/get/34
+```
+Example response body:
+```
+{
+	"name": "Аверсэв",
+	"address": "ул. Олешева 1, Минск"
+}
+```
+#### 3. <a name="UpdatePublishingHouse">Update publishing house by id</a>
+Request URL: 
+```
+[PUT] localhost:8080/publishinghouse/update/{id}
+```
+Request body:
+```
+{
+	["name": ?,]
+	["address": ?]
+}
+```
+Example request URL: 
+```
+[PUT] localhost:8080/publishinghouse/update/34
+```
+Example request body:
+```
+{
+	"address": "ул. Олешева 2, Минск"
+}
+```
+#### 4. <a name="AddPublishingHouse">Add publishing house</a>
+Request URL: 
+```
+[POST] localhost:8080/authors/add
+```
+Request body:
+```
+{
+	"name": ?,
+	"address": ?
+}
+```
+Example request URL: 
+```
+[POST] localhost:8080/publishinghouse/add
+```
+Example request body:
+```
+{
+	"name":"Амалфея",
+	"address":"ул. Кальварийская 62, Минск"
+}
+```
+Response body:
+```
+38
+```
+#### 5. <a name="DeletePublishingHouse">Delete publishing house</a>
+Request URL: 
+```
+[DELETE] localhost:8080/publishinghouse/delete/{id}
+```
+Example request URL: 
+```
+[DELETE] localhost:8080/publishinghouse/delete/38
+```
 
