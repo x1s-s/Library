@@ -1,3 +1,5 @@
+package by.x1ss.library;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

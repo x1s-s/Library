@@ -1,43 +1,41 @@
-package by.x1ss.library.contoller.author;
+package by.x1ss.library.service.author;
 
+import by.x1ss.library.DAO.author.AuthorDAO;
 import by.x1ss.library.DTO.AuthorDTO;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import by.x1ss.library.entities.Author;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/author")
-@SuppressWarnings("rawtypes")
-public class AuthorControllerImp implements AuthorController {
-    @PostMapping("/add")
+@Service
+public class AuthorServiceImp implements AuthorService {
+    @Autowired
+    private AuthorDAO authorDAO;
+
     @Override
-    public ResponseEntity addAuthor(@RequestBody AuthorDTO authorDTO) {
-        return null;
+    public Long addAuthor(Author author) {
+        return authorDAO.addAuthor(author);
     }
 
-    @DeleteMapping("/delete/{id}")
     @Override
-    public ResponseEntity deleteAuthor(@PathVariable long id) {
-        return null;
+    public void deleteAuthor(long id) {
+        authorDAO.deleteAuthor(id);
     }
 
-    @PutMapping("/update/{id}")
     @Override
-    public ResponseEntity updateAuthor(@PathVariable long id,@RequestBody AuthorDTO author) {
-        return null;
+    public void updateAuthor(long id, AuthorDTO author) {
+        authorDAO.updateAuthor(id, author);
     }
 
-    @GetMapping("/get/{id}")
     @Override
-    public ResponseEntity<AuthorDTO> getAuthor(@PathVariable long id) {
-        return null;
+    public AuthorDTO getAuthor(long id) {
+        return AuthorDTO.fromAuthor(authorDAO.getAuthor(id));
     }
 
-    @GetMapping("/get/all")
     @Override
-    public ResponseEntity<List<AuthorDTO>> getAllAuthors() {
-        return null;
+    public List<AuthorDTO> getAllAuthors() {
+        return authorDAO.getAllAuthors().stream().map(AuthorDTO::fromAuthor).toList();
     }
 }
 

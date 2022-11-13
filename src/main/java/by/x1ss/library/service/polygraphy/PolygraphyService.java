@@ -1,16 +1,28 @@
 package by.x1ss.library.service.polygraphy;
 
 import by.x1ss.library.DTO.PolygraphyDTO;
-import org.springframework.http.ResponseEntity;
+import by.x1ss.library.entities.polygraphy.Polygraphy;
+import by.x1ss.library.entities.polygraphy.PolygraphyType;
 
+import java.time.LocalDate;
 import java.util.List;
 
-@SuppressWarnings("rawtypes")
-public interface PolygraphyController {
-    ResponseEntity addPolygraphy(PolygraphyDTO polygraphyDTO);
-    ResponseEntity deletePolygraphy(long id);
-    ResponseEntity updatePolygraphy(long id, PolygraphyDTO polygraphy);
-    ResponseEntity<PolygraphyDTO> getPolygraphy(long id);
-    ResponseEntity<List<PolygraphyDTO>> getAllPolygraphy();
 
+public interface PolygraphyService {
+    Long addPolygraphy(Polygraphy polygraphy);
+    void deletePolygraphy(long id);
+    void updatePolygraphy(long id, PolygraphyDTO polygraphyDTO);
+    PolygraphyDTO getPolygraphy(long id);
+    List<PolygraphyDTO> getAllPolygraphy();
+
+    List<PolygraphyDTO> getPolygraphiesWithFilter(
+            String name,
+            String description,
+            LocalDate dateOfPublication,
+            String text,
+            PolygraphyType type,
+            String fullname,
+            String country,
+            String publishingHouseName,
+            String address);
 }

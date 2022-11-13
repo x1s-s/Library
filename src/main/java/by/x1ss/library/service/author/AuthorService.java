@@ -1,15 +1,15 @@
-package by.x1ss.library.contoller.author;
+package by.x1ss.library.service.author;
 
 import by.x1ss.library.DTO.AuthorDTO;
-import org.springframework.http.ResponseEntity;
+import by.x1ss.library.entities.Author;
 
 import java.util.List;
 
-@SuppressWarnings("rawtypes")
-public interface AuthorController {
-    ResponseEntity addAuthor(AuthorDTO authorDTO);
-    ResponseEntity deleteAuthor(long id);
-    ResponseEntity updateAuthor(long id, AuthorDTO author);
-    ResponseEntity<AuthorDTO> getAuthor(long id);
-    ResponseEntity<List<AuthorDTO>> getAllAuthors();
+
+public interface AuthorService {
+    Long addAuthor(Author author);
+    void deleteAuthor(long id);
+    void updateAuthor(long id, AuthorDTO author);
+    AuthorDTO getAuthor(long id);
+    List<AuthorDTO> getAllAuthors();
 }

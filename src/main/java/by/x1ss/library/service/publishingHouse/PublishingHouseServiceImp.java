@@ -1,42 +1,40 @@
 package by.x1ss.library.service.publishingHouse;
 
+import by.x1ss.library.DAO.publishingHouse.PublishingHouseDAO;
 import by.x1ss.library.DTO.PublishingHouseDTO;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import by.x1ss.library.entities.PublishingHouse;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/publishingHouse")
-@SuppressWarnings("rawtypes")
-public class PublishingHouseControllerImp implements PublishingHouseController {
-    @PostMapping("/add")
+@Service
+public class PublishingHouseServiceImp implements PublishingHouseService {
+    @Autowired
+    private PublishingHouseDAO publishingHouseDAO;
+
     @Override
-    public ResponseEntity addPublishingHouse(@RequestBody PublishingHouseDTO publishingHouseDTO) {
-        return null;
+    public Long addPublishingHouse(PublishingHouse publishingHouse) {
+        return publishingHouseDAO.addPublishingHouse(publishingHouse);
     }
 
-    @DeleteMapping("/delete/{id}")
     @Override
-    public ResponseEntity deletePublishingHouse(@PathVariable long id) {
-        return null;
+    public void deletePublishingHouse(long id) {
+        publishingHouseDAO.deletePublishingHouse(id);
     }
 
-    @PutMapping("/update/{id}")
     @Override
-    public ResponseEntity updatePublishingHouse(@PathVariable long id,@RequestBody PublishingHouseDTO publishingHouse) {
-        return null;
+    public void updatePublishingHouse(long id, PublishingHouseDTO publishingHouseDTO) {
+        publishingHouseDAO.updatePublishingHouse(id, publishingHouseDTO);
     }
 
-    @GetMapping("/get/{id}")
     @Override
-    public ResponseEntity<PublishingHouseDTO> getPublishingHouse(@PathVariable long id) {
-        return null;
+    public PublishingHouseDTO getPublishingHouse(long id) {
+        return PublishingHouseDTO.fromPublishingHouse(publishingHouseDAO.getPublishingHouse(id));
     }
 
-    @GetMapping("/get/all")
     @Override
-    public ResponseEntity<List<PublishingHouseDTO>> getAllPublishingHouse() {
-        return null;
+    public List<PublishingHouseDTO> getAllPublishingHouse() {
+        return publishingHouseDAO.getAllPublishingHouses().stream().map(PublishingHouseDTO::fromPublishingHouse).toList();
     }
 }
